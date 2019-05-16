@@ -47,7 +47,7 @@ public class Parent {
   @ManyToMany(mappedBy = "parents", cascade = CascadeType.PERSIST)
   private Set<Student> students = new HashSet<>();
   
-  @JsonIgnore
+  @JsonIgnore 
   @OneToOne(mappedBy = "parent")
   private Family family;
 

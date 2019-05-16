@@ -49,7 +49,18 @@ public class Student {
       joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "studentId"), 
       inverseJoinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "parentId"))
   private Set<Parent> parents;
-
+  
+/**
+ * 
+ * @param gender
+ * @param firstName
+ * @param middleName
+ * @param lastName
+ * @param dateOfBirth
+ * @param otherStudentDetails
+ * @param parents
+ */
+  
   
   public Student(String gender, String firstName, String middleName, String lastName,
       Date dateOfBirth, String otherStudentDetails, Parent... parents) {
