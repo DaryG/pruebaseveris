@@ -11,7 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "Family_Members")
 public class FamilyMember {
   @Id
@@ -34,43 +41,6 @@ public class FamilyMember {
   @JoinColumn(name = "student_id", nullable = true, referencedColumnName = "studentId")
   private Student student;
 
-  public int getFamilyMemberId() {
-    return familyMemberId;
-  }
+  
 
-  public void setFamilyMemberId(int familyMemberId) {
-    this.familyMemberId = familyMemberId;
-  }
-
-  public String getParentOrStudentMember() {
-    return parentOrStudentMember;
-  }
-
-  public void setParentOrStudentMember(String parentOrStudentMember) {
-    this.parentOrStudentMember = parentOrStudentMember;
-  }
-
-  public Family getFamily() {
-    return family;
-  }
-
-  public void setFamily(Family family) {
-    this.family = family;
-  }
-
-  public Parent getParent() {
-    return parent;
-  }
-
-  public void setParent(Parent parent) {
-    this.parent = parent;
-  }
-
-  public Student getStudent() {
-    return student;
-  }
-
-  public void setStudent(Student student) {
-    this.student = student;
-  }
 }

@@ -1,15 +1,17 @@
 package com.family.service;
 
+import com.family.entity.FamilyMember;
+
 import java.util.List;
 
-import com.family.entity.FamilyMember;
+
 
 public interface IFamilyMemberService {
   public FamilyMember get(int familyMemberId);
 
   public List<FamilyMember> getAll();
 
-  public void post(FamilyMember familyMember);
+  public void post(FamilyMember familyMember, int familyId, String parentOrStudentMember, int id);
 
   public void put(FamilyMember familyMember, int familyMemberId);
 

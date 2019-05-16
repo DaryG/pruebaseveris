@@ -1,8 +1,10 @@
 package com.family.dao;
 
+import com.family.entity.Family;
+
 import org.springframework.data.repository.CrudRepository;
 
-import com.family.entity.Family;
+
 
 public interface IFamilyDao extends CrudRepository<Family, Integer> {
 

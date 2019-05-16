@@ -1,8 +1,10 @@
 package com.family.service;
 
+import com.family.entity.Student;
+
 import java.util.List;
 
-import com.family.entity.Student;
+
 
 public interface IStudentService {
   public Student get(int studentId);

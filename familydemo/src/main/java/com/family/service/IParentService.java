@@ -1,8 +1,10 @@
 package com.family.service;
 
+import com.family.entity.Parent;
+
 import java.util.List;
 
-import com.family.entity.Parent;
+
 
 public interface IParentService {
   public Parent get(int parentId);

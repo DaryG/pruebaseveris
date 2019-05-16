@@ -15,8 +15,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@EqualsAndHashCode(exclude = "parents")
 @Entity
+@Getter @Setter @NoArgsConstructor
 @Table(name = "Students")
 public class Student {
   @Id
@@ -35,17 +43,14 @@ public class Student {
   @Column(name = "other_student_details")
   private String otherStudentDetails;
   
+  @JsonIgnore
   @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "Student_Parents", 
       joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "studentId"), 
       inverseJoinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "parentId"))
   private Set<Parent> parents;
 
-  public Student() {
-    
-  }
-
- 
+  
   public Student(String gender, String firstName, String middleName, String lastName,
       Date dateOfBirth, String otherStudentDetails, Parent... parents) {
     this.gender = gender;
@@ -58,67 +63,5 @@ public class Student {
     this.parents.forEach(x -> x.getStudents().add(this));
   }
 
-  public int getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(int studentId) {
-    this.studentId = studentId;
-  }
-
-  public String getGender() {
-    return gender;
-  }
-
-  public void setGender(String gender) {
-    this.gender = gender;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getMiddleName() {
-    return middleName;
-  }
-
-  public void setMiddleName(String middleName) {
-    this.middleName = middleName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public Date getDateOfBirth() {
-    return dateOfBirth;
-  }
-
-  public void setDateOfBirth(Date dateOfBirth) {
-    this.dateOfBirth = dateOfBirth;
-  }
-
-  public String getOtherStudentDetails() {
-    return otherStudentDetails;
-  }
-
-  public void setOtherStudentDetails(String otherStudentDetails) {
-    this.otherStudentDetails = otherStudentDetails;
-  }
-
-  public Set<Parent> getParents() {
-    return parents;
-  }
-
-  public void setParents(Set<Parent> parents) {
-    this.parents = parents;
-  }
+  
 }
