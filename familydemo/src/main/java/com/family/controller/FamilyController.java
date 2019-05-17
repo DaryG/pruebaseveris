@@ -2,6 +2,7 @@ package com.family.controller;
 
 import com.family.entity.Family;
 import com.family.entity.FamilyMember;
+
 import com.family.service.IFamilyService;
 
 import java.util.List;
@@ -67,10 +68,12 @@ public class FamilyController {
    * @param parentId se requiere del parametro id de parent para poder hacer el insert.
    */
  
+  
   @PostMapping("/families/{parentId}")
-  public void add(@RequestBody Family family, @PathVariable int parentId) {
-    familyService.post(family, parentId);
+  public ResponseEntity<Family> add(@RequestBody Family family, @PathVariable int parentId) {
+    return new ResponseEntity<Family>(familyService.post(family, parentId),HttpStatus.CREATED);
   }
+ 
 
   /**
    * Esta función hace la actualización de family.

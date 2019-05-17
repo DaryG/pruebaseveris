@@ -4,6 +4,7 @@ import com.family.dao.IFamilyDao;
 import com.family.dao.IFamilyMemberDao;
 import com.family.dao.IParentDao;
 import com.family.dao.IStudentDao;
+
 import com.family.entity.FamilyMember;
 
 import java.util.List;
@@ -37,20 +38,21 @@ public class FamilyMemberServiceImpl implements IFamilyMemberService {
   }
   
   @Override
-  public void post(FamilyMember familyMember, int familyId, String parentOrStudentMember, int id) {
+  public FamilyMember post(FamilyMember familyMember, int familyId,
+      String parentOrStudentMember, int id) {
     familyDao.findById(familyId).ifPresent((f) -> {
       familyMember.setFamily(f);
-      if (parentOrStudentMember.equals("P")) {
+      if (parentOrStudentMember.equals("parent")) {
         parentDao.findById(id).ifPresent((p) -> {
           familyMember.setParent(p);
         });
-      }   else if (parentOrStudentMember.equals("S")) {
+      }   else if (parentOrStudentMember.equals("student")) {
         studentDao.findById(id).ifPresent((s) -> {
           familyMember.setStudent(s);
         });
       }
     });
-    familyMemberDao.save(familyMember);
+    return familyMemberDao.save(familyMember);
   }
   
   @Override

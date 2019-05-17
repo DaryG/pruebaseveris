@@ -11,7 +11,7 @@ public interface IFamilyMemberService {
 
   public List<FamilyMember> getAll();
 
-  public void post(FamilyMember familyMember, int familyId, String parentOrStudentMember, int id);
+  public FamilyMember post(FamilyMember familyMember, int familyId, String parentOrStudentMember, int id);
 
   public void put(FamilyMember familyMember, int familyMemberId);
 

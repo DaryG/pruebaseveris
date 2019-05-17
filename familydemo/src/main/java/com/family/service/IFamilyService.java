@@ -15,7 +15,7 @@ public interface IFamilyService {
   
   public List<Family> getAll();
 
-  public void post(Family family, int parentId);
+  public Family post(Family family, int parentId);
 
   public void put(Family family, int familyId);
   

@@ -6,6 +6,8 @@ import com.family.service.IFamilyMemberService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,14 +44,18 @@ public class FamilyMemberController {
    * @param parentOrStudentMember se inserta si es student o parent.
    */
   
+ 
   @PostMapping("familymembers/{familyId}/{parentOrStudentMember}/{id}")
-  public void add(@RequestBody FamilyMember familyMember,
-      @PathVariable(value = "familyId") int familyId,
-      @PathVariable(value = "parentOrStudentMember") String parentOrStudentMember,
-      @PathVariable(value = "id") int id) {
-    familyMemberService.post(familyMember, familyId, parentOrStudentMember, id);
+  public ResponseEntity<FamilyMember> add(@RequestBody FamilyMember familyMember, 
+        @PathVariable(value = "familyId")int familyId,
+        @PathVariable(value = "parentOrStudentMember") String parentOrStudentMember,
+        @PathVariable(value = "id") int id) {
+    return new ResponseEntity<FamilyMember>(familyMemberService.post(familyMember,
+        familyId, parentOrStudentMember, id),HttpStatus.CREATED);
   }
+        
   
+
   /**
    * Esta función se encarga de hacer la actualización de familymembers.
    * @param familyMember se actualizara la entidad familymembers

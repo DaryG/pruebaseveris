@@ -5,6 +5,7 @@ import com.family.dao.IFamilyMemberDao;
 import com.family.dao.IParentDao;
 import com.family.entity.Family;
 import com.family.entity.FamilyMember;
+import com.family.entity.Parent;
 
 import java.util.List;
 
@@ -34,11 +35,12 @@ public class FamilyServiceImpl implements IFamilyService {
   }
 
   @Override
-  public void post(Family family, int parentId) {
+  public Family post(Family family, int parentId) {
     parentDao.findById(parentId).ifPresent((p) -> {
       family.setParent(p);
-      familyDao.save(family);
+     
     });
+    return familyDao.save(family);
   }
   
   @Override

@@ -1,4 +1,4 @@
-package com.exerciseone;
+package com.family.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
