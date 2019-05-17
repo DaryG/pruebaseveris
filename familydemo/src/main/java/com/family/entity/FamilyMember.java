@@ -15,6 +15,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * clase Entity FamilyMember, desarrollamos la estructura de nuestra entidad familymembers
+ * y las relaciones con las otras entidades.
+ * @author Dary Gonzales Cervera
+ *
+ */
+
 @Entity
 @Getter
 @Setter
@@ -33,9 +40,16 @@ public class FamilyMember {
   @Column(name = "parent_or_student_member")
   private String parentOrStudentMember;
   
+  /**
+   * Relación uno a uno con la entidad parents.
+   */
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "parent_id", nullable = true, referencedColumnName = "parentId")
   private Parent parent;
+  
+  /**
+   * Relación uno a uno con la entidad students.
+   */
   
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "student_id", nullable = true, referencedColumnName = "studentId")

@@ -11,7 +11,7 @@ public interface IStudentService {
 
   public List<Student> getAll();
 
-  public void post(Student student);
+  public Student post(Student student);
 
   public void put(Student student, int studentId);
 

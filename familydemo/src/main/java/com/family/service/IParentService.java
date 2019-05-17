@@ -11,7 +11,7 @@ public interface IParentService {
 
   public List<Parent> getAll();
 
-  public void post(Parent parent);
+  public Parent post(Parent parent);
 
   public void put(Parent parent, int parentId);
 

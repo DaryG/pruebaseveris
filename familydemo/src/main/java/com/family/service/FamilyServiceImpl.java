@@ -35,12 +35,12 @@ public class FamilyServiceImpl implements IFamilyService {
 
   @Override
   public void post(Family family, int parentId) {
-	  parentDao.findById(parentId).ifPresent((p) ->{
-		  family.setParent(p);
-		  familyDao.save(family);
-	  });
-	    
+    parentDao.findById(parentId).ifPresent((p) -> {
+      family.setParent(p);
+      familyDao.save(family);
+    });
   }
+  
   @Override
   public void put(Family family, int familyId) {
     familyDao.findById(familyId).ifPresent((f) -> {
@@ -54,20 +54,18 @@ public class FamilyServiceImpl implements IFamilyService {
     familyDao.deleteById(familyId);
   }
 
-@Override
-public List<FamilyMember> getFamilyMembers(int familyId) {
-	
-	return (List<FamilyMember>) familyMemberDao.findByFamilyFamilyId(familyId);
-}
+  @Override
+public List<FamilyMember> findByFamiliesFamily_id(int familyId) {
+    return (List<FamilyMember>) familyMemberDao.findByFamilyFamilyId(familyId);
+  }
 
-@Override
+  @Override
 public void patch(Family family, int familyId) {
-	 familyDao.findById(familyId).ifPresent((f) -> {
-	      family.setFamilyId(familyId);
-	      familyDao.save(family);
-	    });
-	
-}
+    familyDao.findById(familyId).ifPresent((f) -> {
+      family.setFamilyId(familyId);
+      familyDao.save(family);
+    });
+  }
 
 
 

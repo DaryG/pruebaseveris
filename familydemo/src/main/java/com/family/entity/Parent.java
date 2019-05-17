@@ -2,15 +2,15 @@ package com.family.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,6 +18,14 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/**
+ * clase Entity Parent, desarrollamos la estructura de nuestra entidad parents, y las relaciones
+ * con las otras entidades.
+ * @author Dary Gonzales Cervera
+ *
+ */
+
 
 @Entity
 @Getter 
@@ -43,10 +51,20 @@ public class Parent {
   @Column(name = "other_parent_details")
   private String otherParentDetails;
 
-  @JsonIgnore
-  @ManyToMany(mappedBy = "parents", cascade = CascadeType.PERSIST)
-  private Set<Student> students = new HashSet<>();
+  /**
+   * Relación muchos a muchos con la entidad student.
+   */
   
+  @JsonIgnore
+  @JoinTable(name = "student_parent", joinColumns = @JoinColumn(name = "parentId", 
+      referencedColumnName = "parentId"), inverseJoinColumns = @JoinColumn(name = "studentId", 
+      referencedColumnName = "studentId"))
+  @ManyToMany(cascade = CascadeType.ALL)
+  private List<Student> student;
+  
+  /**
+   * Relación uno a uno con la entidad parents.
+   */
   @JsonIgnore 
   @OneToOne(mappedBy = "parent")
   private Family family;

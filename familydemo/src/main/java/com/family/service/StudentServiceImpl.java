@@ -25,8 +25,8 @@ public class StudentServiceImpl implements IStudentService {
   }
 
   @Override
-  public void post(Student student) {
-    studentDao.save(student);
+  public Student post(Student student) {
+    return studentDao.save(student);
   }
 
   @Override

@@ -11,7 +11,7 @@ import java.util.List;
 public interface IFamilyService {
   public Family get(int familyId);
   
-  public List<FamilyMember> getFamilyMembers(int familyId);
+  public List<FamilyMember> findByFamiliesFamily_id(int familyId);
   
   public List<Family> getAll();
 

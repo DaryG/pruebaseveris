@@ -1,30 +1,35 @@
 package com.family.entity;
 
-import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.CascadeType;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * clase Entity Parent, desarrollamos la estructura de nuestra entidad parents, y las relaciones
+ * con las otras entidades.
+ * @author Dary Gonzales Cervera
+ *
+ */
 
-@EqualsAndHashCode(exclude = "parents")
+@EqualsAndHashCode(exclude = "parent")
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter 
+@Setter 
+@NoArgsConstructor
 @Table(name = "Students")
 public class Student {
   @Id
@@ -43,36 +48,14 @@ public class Student {
   @Column(name = "other_student_details")
   private String otherStudentDetails;
   
+  /**
+   * Relación muchos a muchos con la entidad parents.
+   */
   @JsonIgnore
-  @ManyToMany(cascade = CascadeType.PERSIST)
-  @JoinTable(name = "Student_Parents", 
-      joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "studentId"), 
-      inverseJoinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "parentId"))
-  private Set<Parent> parents;
-  
-/**
- * 
- * @param gender
- * @param firstName
- * @param middleName
- * @param lastName
- * @param dateOfBirth
- * @param otherStudentDetails
- * @param parents
- */
-  
-  
-  public Student(String gender, String firstName, String middleName, String lastName,
-      Date dateOfBirth, String otherStudentDetails, Parent... parents) {
-    this.gender = gender;
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.dateOfBirth = dateOfBirth;
-    this.otherStudentDetails = otherStudentDetails;
-    this.parents = Stream.of(parents).collect(Collectors.toSet());
-    this.parents.forEach(x -> x.getStudents().add(this));
-  }
+  @ManyToMany(mappedBy = "student")
+  private List<Parent> parent;
+
+}
 
   
-}
+

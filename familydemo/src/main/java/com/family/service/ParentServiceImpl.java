@@ -25,8 +25,8 @@ public class ParentServiceImpl implements IParentService {
   }
 
   @Override
-  public void post(Parent parent) {
-    parentDao.save(parent);
+  public Parent post(Parent parent) {
+    return parentDao.save(parent);
   }
 
   @Override
